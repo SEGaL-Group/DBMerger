@@ -22,12 +22,14 @@ public class Main
 					// Create the final DB
 					DatabaseConnector fdb = new DatabaseConnector();
 					fdb.connect("eggnet");
-					fdb.createDatabaseEmpty(Resources.mergeDB);
+					fdb.createFinalDatabase(Resources.mergeDB);
 					
 					// Create the temp DB
 					DatabaseConnector tdb = new DatabaseConnector();
 					
-					
+					// Merge
+					Merger merger = new Merger(fdb, tdb);	
+					merger.mergeDumps();
 					
 					fdb.close();
 					tdb.close();
